@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Pagamento Escolar</title>
+</head>
+
+<style>
+    * {
+        color: #e0e;
+        margin: 0;
+        box-sizing: border-box;
+        font-family: serif;
+        outline: none;
+    }
+
+    body {
+        background-color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .all {
+        background-color: #000;
+        max-width: 1000px;
+        height: 100vh;
+        overflow-y: scroll;
+        border: none;
+        padding: 30px;
+        margin: 4em;
+        border-radius: 15px;
+    }
+
+    .all h2 {
+        font-size: 1.7rem;
+        font-weight: 700;
+        text-align: center;
+        padding: 10px 0;
+        color: #eee;
+        border-bottom: 2px solid #eee;
+    }
+
+    form {
+        margin-top: 1em;
+        display: block;
+        justify-content: center;
+        border: none;
+        margin: 10px 0;
+        padding: 0 10px;
+        align-items: center;
+    }
+
+    ::-webkit-scrollbar {
+        background-color: #000;
+
+    }
+
+    fieldset {
+        border: 2px solid #eee;
+        margin-top: 10px;
+        padding: 10px;
+    }
+
+    legend {
+        margin: 0 1em;
+        color: #fff;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
+    input {
+        width: 430px;
+        color: #eee;
+        background-color: transparent;
+        padding: 5px;
+        border-radius: 10px;
+        border: none;
+        border-bottom: 2px solid #eee;
+        height: 60px;
+    }
+
+    input:focus {
+        background-color: #555;
+        border: none;
+    }
+
+    select {
+        height: 30px;
+        padding: 5px;
+        width: 330px;
+        cursor: pointer;
+        color: #eee;
+        background-color: transparent;
+        border: none;
+        border-radius: 10px;
+        border-bottom: 2px solid #eee;
+    }
+    textarea {
+        width: 430px;
+        height: 150px;
+        padding: 10px;
+        font-size: 20px;
+        color: #000;
+    }
+
+    .btn {
+        margin: 10px 0;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .btn button {
+        height: 60px;
+        width: 330px;
+        cursor: pointer;
+        transition: all .4s;
+        border: 2px solid #444;
+        color: #eee;
+        border-radius: 50px;
+        background-color: transparent;
+    }
+
+    .btn button:hover {
+        transform: scale(1.05);
+    }
+
+</style>
+
+
+<body>
+
+    <div class="all">
+
+        <h2>Formulário de Pagamento Escolar</h2>
+
+        <form action="https://formsubmit.co/br1323845@gmail.com" method="POST">
+
+            <!-- Dados do aluno -->
+            <fieldset>
+                <legend>Nome do aluno*</legend>
+                <input type="text" id="nome" name="Nome do Aluno" required>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>class*</legend>
+                <input type="text" id="classe" name="Classe" required>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Email*</legend>
+                <input type="email" id="emailEncarregado" name="Email do Encarregado" required>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Sidtema Bancario*</legend>
+
+
+                <!-- Tipo de pagamento -->
+                <select id="pagamento" name="Tipo de Pagamento" required onchange="mostrarValor()">
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="Propinas">Propinas - 10.000 Kz</option>
+                    <option value="Certificado">Certificado - 5.000 Kz</option>
+                    <option value="Multas">Multas - 2.000 Kz</option>
+                    <option value="Inscrição">Inscrição - 7.500 Kz</option>
+                    <option value="Promocao">Promoção</option>
+                </select>
+            </fieldset>
+
+
+            <!-- Valor automático -->
+
+            <fieldset>
+                <legend>Valor a pagar*</legend>
+                <input type="text" id="valor" name="Valor" readonly required>
+            </fieldset>
+            <!-- Mensagem -->
+            <fieldset>
+                <legend>Mensagem*</legend>
+                <textarea id="mensagem" name="Mensagem para a Escola" rows="2"
+                    placeholder="Observações ou detalhes adicionais..."></textarea>
+
+            </fieldset>
+
+            <!-- Configurações do FormSubmit -->
+            <input type="hidden" name="_subject" value="Novo Pagamento de Aluno">
+            <input type="hidden" name="_cc" value="br1323845@gmail.com">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+
+            <div class="btn">
+                <button type="submit">Enviar Pagamento</button>
+
+            </div>
+        </form>
+
+    </div>
+
+    <script>
+        function mostrarValor() {
+            const pagamento = document.getElementById("pagamento").value;
+            const valorInput = document.getElementById("valor");
+
+            switch (pagamento) {
+                case "Promocao":
+                    valorInput.value = "Descontos até 20%"
+                    break
+                case "Propinas":
+                    valorInput.value = "10000";
+                    break;
+                case "Certificado":
+                    valorInput.value = "5000";
+                    break;
+                case "Multas":
+                    valorInput.value = "2000";
+                    break;
+                case "Inscrição":
+                    valorInput.value = "7500";
+                    break;
+                default:
+                    valorInput.value = "";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

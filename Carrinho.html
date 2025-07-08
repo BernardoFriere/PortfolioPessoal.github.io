@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New site</title>
+</head>
+<style>
+    body {
+        background-color: #fff;
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    .produtos {
+        background-color: #9E9E9E;
+        padding: 20px;
+        max-height: 500px;
+        overflow-y: auto;
+        width: 800px;
+    }
+
+    .produtos h2 {
+        font-size: 2em;
+        margin: 0;
+        border-bottom: 2px solid #E0E0E0;
+        color: #EEE;
+        text-align: center;
+    }
+
+    .grid {
+        flex: 3;
+        padding: 10px;
+    }
+
+    .class {
+        width: 500px;
+        border-radius: 12px;
+        box-shadow: 0 0 20px #F0F0F0F0;
+        background-color: #fff;
+        padding: 15px;
+        margin: 2em 0;
+    }
+
+    .class h1 {
+        margin: 0 10px;
+        font-weight: 700;
+
+    }
+
+    .class p {
+        margin: 05px;
+        font-weight: 600;
+    }
+
+    .class button {
+        height: 60px;
+        width: 130px;
+        border: none;
+        background-color: #2cc772;
+        border-radius: 12px;
+        color: #eee;
+        cursor: pointer;
+        transition: all .3s ease;
+    }
+
+    .class button:hover {
+        color: #fff;
+        transform: scale(1.02);
+        background-color: #2cc602;
+    }
+
+    .all {
+        border-left: 2px solid #6c6a6a;
+        padding: 0 20px;
+        overflow-y: auto;
+        height: 72vh;
+        background-color: #fff;
+        width: 400px;
+    }
+
+    ::-webkit-scrollbar {
+        opacity: 0;
+    }
+
+    .carrinho h2 {
+        padding: 0 0 10px;
+        font-size: 2em;
+        border-bottom: 1px solid #6c6a6a;
+        text-align: center;
+    }
+
+    .intens-carrinh {
+        background-color: #6c6a6a;
+        color: #fff;
+        padding: 20px;
+        font-size: 15px;
+    }
+
+
+    .intens-carrinho p {
+        margin: 20px 0;
+        background-color: #cccc;
+        padding: 20px;
+
+    }
+</style>
+
+<body>
+    <div class="produtos">
+        <h2>Produtos</h2>
+        <div class="grid">
+            <div class="class">
+                <h1>Colchão emma</h1>
+                <p>20000kz</p>
+                <button onclick=" add('Colchão Emma')">Comprar</button>
+            </div>
+            <div class="class">
+                <h1>Cinto</h1>
+                <p>3.000kz</p>
+                <button onclick=" add('Cinto')">Comprar</button>
+            </div>
+            <div class="class">
+                <h1>Nike ar</h1>
+                <p>10.000kz</p>
+                <button onclick=" add('Nike ar')">Comprar</button>
+            </div>
+            <div class="class">
+                <h1>Chipe da unitel</h1>
+                <p>700.00kz</p>
+                <button onclick=" add('Chipe da unitel')">Comprar</button>
+            </div>
+            <div class="class">
+                <h1>Pasta jordan</h1>
+                <p>7.000kz</p>
+                <button onclick=" add('Pasta jordan')">Comprar</button>
+            </div>
+        </div>
+    </div>
+    <div class="carrinho">
+        <h2>Carrinho</h2>
+        <div class="all">
+            <div id="intens-carrinho" class="intens-carrinho">
+                <!-- class="intens-carrinh" -->
+                <p>Carrinho vazio</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let carrinho = [];
+
+        function add(produto) {
+            carrinho.push(produto);
+            AtualizarProduto();
+        }
+
+        function AtualizarProduto() {
+            const container = document.getElementById("intens-carrinho");
+            container.innerHTML = "";
+            if (carrinho.length === 0) {
+                container.innerHTML = "<p>Carrinho vazio</p>";
+                container.style.margin = "10px"
+
+            } else {
+                carrinho.forEach((intem, index) => {
+                    const div = document.createElement("div");
+
+                    div.className = "item-carrinho";
+
+                    div.textContent = intem;
+
+                    container.appendChild(div);
+                    container.style.background = "#222";
+                    container.style.color = "#eee";
+                    container.style.margin = "10px";
+                    container.style.padding = "10px";
+                });
+
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
